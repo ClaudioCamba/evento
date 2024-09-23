@@ -1,8 +1,11 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './style/App.css'
-import HomePage from './pages/homePage'
+import NavigationBar from "./components/NavigationBar";
+import HomePage from './pages/HomePage'
 
 export default function App () {
-  return (
-    <HomePage />
-  )
+  return (<>
+      <NavigationBar />
+      <HomePage />
+  </>)
 }
