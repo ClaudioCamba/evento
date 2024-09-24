@@ -32,8 +32,10 @@ export default function SignInUpForm() {
         const { error } = await supabase.auth.signOut()
       }}>Sign out</button>
     <button onClick={ async ()=>{
-        const { data, error } = await supabase.auth.getUserIdentities()
-        console.log(data, error)
+        // const { data, error } = await supabase.auth.getUserIdentities()
+        const { data: { user } } = await supabase.auth.getUser()
+
+        console.log(user)
       }}>User Details</button>
     </div>)
   }
