@@ -1,6 +1,6 @@
 
 function HomePage () {
-    return (<main id="homepage">
+    return (<main id="home-page">
         <h1>Homepage</h1>
         <ul>
             <li>Business Sign-up</li>
