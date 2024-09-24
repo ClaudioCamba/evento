@@ -1,4 +1,3 @@
-import './style/App.css'
 import { useState, useEffect } from 'react'
 import { createClient } from '@supabase/supabase-js'
 import { Auth } from '@supabase/auth-ui-react'
@@ -29,13 +28,13 @@ export default function SignInUpForm() {
   else {
     return (<div>
       Logged in!
-      <button onClick={async ()=>{
+      <button onClick={ async ()=>{
         const { error } = await supabase.auth.signOut()
-        console.log(error)
-
-      }}>
-
-      </button>
+      }}>Sign out</button>
+    <button onClick={ async ()=>{
+        const { data, error } = await supabase.auth.getUserIdentities()
+        console.log(data, error)
+      }}>User Details</button>
     </div>)
   }
 }
