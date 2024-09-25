@@ -1,22 +1,23 @@
-import { useState, useContext, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react'
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { SignedInUserContext } from '../context/SignedInUser';
 import { Link } from "react-router-dom";
+import { createClient } from '@supabase/supabase-js';
+import contextSession from '../utils/contextSession';
+
+const supabase = createClient(import.meta.env.VITE_PUBLIC_SUPABASE_URL, import.meta.env.VITE_PUBLIC_SUPABASE_KEY)
 
 function NavigationBar() {
-    const { signedInUser, setSignedInUser } = useContext(SignedInUserContext);
-
-    useEffect(()=>{
-        console.log(signedInUser)
-    },[])
+    const { signedInUser } = useContext(SignedInUserContext);
+    contextSession();
 
   return (
     <Navbar collapseOnSelect expand="md" className="bg-body-tertiary">
       <Container>
-        <Navbar.Brand to="/">EVENTO</Navbar.Brand>
+        <Navbar.Brand><Link to="/">EVENTO</Link></Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
@@ -35,7 +36,7 @@ function NavigationBar() {
             </NavDropdown> */}
           </Nav>
           <Nav>
-            <Link to="/login">{'Log in'}</Link>
+            <Link to="/login">{ signedInUser? signedInUser?.user?.email : 'Log in' }</Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
