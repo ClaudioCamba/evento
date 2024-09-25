@@ -60,7 +60,7 @@ function NavigationBar() {
             <Link to="/login">{signedInUser? signedInUser?.user?.email : 'Log in'}</Link>
             <button onClick={()=>{
                 console.log(signedInUser)
-            }}>TEST</button>
+            }}>TESTS</button>
           </Nav>
         </Navbar.Collapse>
       </Container>
