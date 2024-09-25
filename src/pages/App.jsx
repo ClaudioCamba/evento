@@ -1,15 +1,14 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../style/App.css'
 import { Routes, Route } from 'react-router-dom';
-import { SignedInUserProvider } from '../context/SignedInUser';
-import NavigationBar from '../components/NavigationBar';
 import HomePage from './HomePage';
 import SignInUpPage from './SignInUpPage';
+import NavigationBar from '../components/NavigationBar';
 
 
 export default function App () {
-  return (
-  <SignedInUserProvider>
+  
+  return (<>
       <NavigationBar />
       <Routes>
         <Route path="/" element={ <HomePage /> } />
@@ -18,5 +17,4 @@ export default function App () {
         <Route path="/eventlist" element={ <h1>Event List Page</h1> } />
         <Route path="/event" element={ <h1>Event Page</h1> } />
       </Routes>
-  </SignedInUserProvider>
-)}
+  </>)}

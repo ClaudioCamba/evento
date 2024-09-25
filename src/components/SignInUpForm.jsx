@@ -13,14 +13,12 @@ export default function SignInUpForm() {
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session)
-      setSignedInUser(session)
     })
 
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session)
-      setSignedInUser(session)
     })
 
     return () => subscription.unsubscribe()
@@ -28,23 +26,24 @@ export default function SignInUpForm() {
 
   if (!session) {
     return (<Auth supabaseClient={supabase} appearance={{ theme: ThemeSupa }} providers={[]} theme="light"/>)
-  }
-  else {
-    
-    return (<div>
-      Logged in!
-      <button onClick={ async ()=>{
-        const { error } = await supabase.auth.signOut()
-      }}>Sign out</button>
+  } else {
+    return (
+        <div>
 
-    <button onClick={ async ()=>{
-        // const { data, error } = await supabase.auth.getUserIdentities()
-        const { data: { user } } = await supabase.auth.getUser()
+            <p>Logged in!</p>
 
-        console.log(signedInUser?.user?.email)
-      }}>User Details</button>
-    </div>
-    
+            <button onClick={ async ()=>{
+                const { error } = await supabase.auth.signOut()
+            }}>Sign out</button>
+
+            <button onClick={ async ()=>{
+                const { data: { user } } = await supabase.auth.getUser()
+                console.log(user)
+                console.log(signedInUser)
+                setSignedInUser('USER SIGNED')
+            }}>User Details</button>
+
+        </div>
     )
   }
 }
