@@ -40,7 +40,6 @@ export default function SignInUpForm() {
                 const { data: { user } } = await supabase.auth.getUser()
                 console.log(user)
                 console.log(signedInUser)
-                setSignedInUser('USER SIGNED')
             }}>User Details</button>
 
         </div>
