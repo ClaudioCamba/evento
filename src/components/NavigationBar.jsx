@@ -57,10 +57,10 @@ function NavigationBar() {
             </NavDropdown> */}
           </Nav>
           <Nav>
-            <Link to="/login">{signedInUser? signedInUser?.user?.email : 'Log in'}</Link>
-            <button onClick={()=>{
+            <Link to="/account">{signedInUser? signedInUser?.user?.email : 'Log in'}</Link>
+            {/* <button onClick={()=>{
                 console.log(signedInUser)
-            }}>TESTS</button>
+            }}>TESTS</button> */}
           </Nav>
         </Navbar.Collapse>
       </Container>

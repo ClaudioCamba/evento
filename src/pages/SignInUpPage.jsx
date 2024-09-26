@@ -1,10 +1,12 @@
 import SignInUpForm from "../components/SignInUpForm";
 
 function SignInUpPage () {
-    return (<main id="signinup-page">
-        <h1>SIGN IN/UP</h1>
+    return (
+    <main id="signinup-page">
+        <h1></h1>
         <SignInUpForm />
-    </main>)
+    </main>
+    )
 }
 
 export default SignInUpPage
