@@ -13,6 +13,7 @@ function EventForm({signedInUser}) {
   const [formPrice, setFormPrice] = useState('');
   const [formAddress, setFormAddress] = useState('');
   const [formDesc, setFormDesc] = useState('');
+  // const [formImage, setFormImage] = useState(null);
 
   const handleSubmit = (event) => {
     const form = event.currentTarget;
@@ -30,10 +31,10 @@ function EventForm({signedInUser}) {
         address: formAddress, 
         event_desc: formDesc
       }
-
-      insertEventData(eventDetail).then((data)=>{
-        console.log(data)
-      }).catch((err)=>console.log(err))
+      // console.log(formImage)
+      // insertEventData(eventDetail).then((data)=>{
+      //   console.log(data)
+      // }).catch((err)=>console.log(err))
     }
 
     setValidated(true);
@@ -42,7 +43,7 @@ function EventForm({signedInUser}) {
   return (
     <Form noValidate validated={validated} onSubmit={handleSubmit}>
       <Row className="mb-3">
-        <Form.Group as={Col} md="8" controlId="validationCustom01">
+        <Form.Group as={Col} md="8" controlId="eventTitle">
           <Form.Label>Event Title</Form.Label>
           <Form.Control
             required
@@ -55,7 +56,7 @@ function EventForm({signedInUser}) {
         </Form.Group>
         </Row>
         <Row className="mb-3">
-        <Form.Group as={Col} md="4" controlId="validationCustom02">
+        <Form.Group as={Col} md="4" controlId="eventDate">
           <Form.Label>Date</Form.Label>
           <Form.Control
             required
@@ -66,7 +67,7 @@ function EventForm({signedInUser}) {
           />
           <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
         </Form.Group>
-        <Form.Group as={Col} md="4" controlId="validationCustom02">
+        <Form.Group as={Col} md="4" controlId="eventPrice">
           <Form.Label>Price</Form.Label>
           <InputGroup className="mb-3">
             <InputGroup.Text>£</InputGroup.Text>
@@ -85,7 +86,7 @@ function EventForm({signedInUser}) {
         </Form.Group>
       </Row>
       <Row className="mb-3">
-        <Form.Group as={Col} md="8" controlId="validationCustom03">
+        <Form.Group as={Col} md="8" controlId="eventAddress">
           <Form.Label>Address</Form.Label>
           <Form.Control 
             type="text" 
@@ -100,7 +101,7 @@ function EventForm({signedInUser}) {
         </Form.Group>
       </Row>
       <Row className="mb-3">
-        <Form.Group as={Col} md="8" controlId="validationCustom03">
+        <Form.Group as={Col} md="8" controlId="eventDescription">
           <Form.Label>Event Description</Form.Label>
           <Form.Control 
             as="textarea" 
@@ -115,6 +116,19 @@ function EventForm({signedInUser}) {
           </Form.Control.Feedback>
         </Form.Group>
       </Row>
+      {/* <Row className="mb-3">
+        <Form.Group as={Col} md="8" controlId="eventImage">
+          <Form.Label>Event Image</Form.Label>
+          <Form.Control 
+            type="file"
+            accept="image/png, image/jpeg, image/jpg"
+            onChange={(event)=> setFormImage(event.target.value)}
+          />
+          <Form.Control.Feedback type="invalid">
+            Please provide a valid image file.
+          </Form.Control.Feedback>
+        </Form.Group>
+      </Row> */}
       <Button type="submit">Submit form</Button>
     </Form>
   );
