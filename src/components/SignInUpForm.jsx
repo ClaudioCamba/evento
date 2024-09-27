@@ -3,8 +3,9 @@ import { createClient } from '@supabase/supabase-js'
 import { Auth } from '@supabase/auth-ui-react'
 import { ThemeSupa } from '@supabase/auth-ui-shared'
 import { SignedInUserContext } from '../context/SignedInUser';
-
-const supabase = createClient(import.meta.env.VITE_PUBLIC_SUPABASE_URL, import.meta.env.VITE_PUBLIC_SUPABASE_KEY)
+import supabase from '../utils/supabaseClient';
+import insertEventData from '../utils/insertEventData';
+import fetchEventData from '../utils/fetchEventData';
 
 export default function SignInUpForm() {
   const [session, setSession] = useState(null);
@@ -36,10 +37,10 @@ export default function SignInUpForm() {
                 const { error } = await supabase.auth.signOut()
             }}>Sign out</button>
 
-            <button onClick={ async ()=>{
-                const { data: { user } } = await supabase.auth.getUser()
-                console.log(user)
-                console.log(signedInUser)
+            <button onClick={()=>{
+                insertEventData()
+                .then((data)=>{console.log(data)})
+                .catch((err)=>{console.log('error',err)})
             }}>User Details</button>
 
         </div>
