@@ -5,9 +5,9 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { SignedInUserContext } from '../context/SignedInUser';
 import { Link } from "react-router-dom";
-import { createClient } from '@supabase/supabase-js'
+import supabase from '../utils/supabaseClient';
 
-const supabase = createClient(import.meta.env.VITE_PUBLIC_SUPABASE_URL, import.meta.env.VITE_PUBLIC_SUPABASE_KEY)
+
 
 function NavigationBar() {
     const { signedInUser, setSignedInUser } = useContext(SignedInUserContext);

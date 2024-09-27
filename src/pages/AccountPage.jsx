@@ -8,8 +8,13 @@ function AccountPage () {
     return (
     <main id="signinup-page">
         <h1>{signedInUser ? 'Account: '+signedInUser?.user?.email : 'Log in | Register'}</h1>
-        { signedInUser ? <EventForm /> : null}
+        { signedInUser ? <EventForm signedInUser={signedInUser} /> : null}
         <SignInUpForm />
+        <button onClick={()=>{
+      fetchEventData()
+      .then((data)=>{console.log(data)})
+      .catch((err)=>{console.log('error',err)})
+  }}>User Details</button>
     </main>
     )
 }
