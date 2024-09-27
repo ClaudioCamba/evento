@@ -1,8 +1,4 @@
-import NavigationBar from '../components/NavigationBar';
-import { SignedInUserContext } from '../context/SignedInUser';
-import { useState, useEffect, useContext } from 'react';
-
-function HomePage () {
+function Homepage () {
     return (<main id="home-page">
         <h1>Homepage</h1>
         <ul>
@@ -13,4 +9,4 @@ function HomePage () {
     </main>)
 }
 
-export default HomePage
+export default Homepage;
