@@ -34,10 +34,6 @@ export default function SignInUpForm() {
 
             <p>Logged in!</p>
 
-            <button onClick={ async ()=>{
-                const { error } = await supabase.auth.signOut()
-            }}>Sign out</button>
-
         </div>
     )
   }

@@ -4,7 +4,8 @@ import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Row from 'react-bootstrap/Row';
-import insertEventData from '../utils/insertEventData'
+import insertEventData from '../utils/insertEventData';
+import uploadImage from '../utils/uploadImage'
 
 function EventForm({signedInUser}) {
   const [validated, setValidated] = useState(false);
@@ -13,7 +14,19 @@ function EventForm({signedInUser}) {
   const [formPrice, setFormPrice] = useState('');
   const [formAddress, setFormAddress] = useState('');
   const [formDesc, setFormDesc] = useState('');
-  // const [formImage, setFormImage] = useState(null);
+  const [formImage, setFormImage] = useState(null);
+  const [isLoading,setIsLoading] = useState(false)
+
+  const eventDetail = {
+    user_id: signedInUser.user.id, 
+    email: signedInUser.user.email, 
+    title: formTitle, 
+    date: formDate, 
+    price: formPrice, 
+    address: formAddress, 
+    event_desc: formDesc,
+    img_path: null
+  }
 
   const handleSubmit = (event) => {
     const form = event.currentTarget;
@@ -22,19 +35,18 @@ function EventForm({signedInUser}) {
       event.stopPropagation();
     } else {
       event.preventDefault();
-      const eventDetail = {
-        user_id: signedInUser.user.id, 
-        email: signedInUser.user.email, 
-        title: formTitle, 
-        date: formDate, 
-        price: formPrice, 
-        address: formAddress, 
-        event_desc: formDesc
-      }
-      // console.log(formImage)
-      // insertEventData(eventDetail).then((data)=>{
-      //   console.log(data)
-      // }).catch((err)=>console.log(err))
+      setIsLoading(true);
+      uploadImage(formImage, formImage.name)
+      .then(({data})=> {
+        eventDetail.img_path = data.fullPath;
+        return insertEventData(eventDetail);
+      }).then((data)=>{
+        console.log('done',data)
+      }).catch((err)=>{
+        console.log(err)
+      }).finally(()=>{
+        setIsLoading(false);
+      })
     }
 
     setValidated(true);
@@ -42,6 +54,7 @@ function EventForm({signedInUser}) {
 
   return (
     <Form noValidate validated={validated} onSubmit={handleSubmit}>
+      {isLoading ? <p>Loading...</p> : <p>Waiting</p>}
       <Row className="mb-3">
         <Form.Group as={Col} md="8" controlId="eventTitle">
           <Form.Label>Event Title</Form.Label>
@@ -116,19 +129,20 @@ function EventForm({signedInUser}) {
           </Form.Control.Feedback>
         </Form.Group>
       </Row>
-      {/* <Row className="mb-3">
+      <Row className="mb-3">
         <Form.Group as={Col} md="8" controlId="eventImage">
           <Form.Label>Event Image</Form.Label>
           <Form.Control 
+            required
             type="file"
             accept="image/png, image/jpeg, image/jpg"
-            onChange={(event)=> setFormImage(event.target.value)}
+            onChange={(event)=> setFormImage(event.target.files[0])}
           />
           <Form.Control.Feedback type="invalid">
-            Please provide a valid image file.
+            Please provide a valid image file. (png, jpg or jpeg)
           </Form.Control.Feedback>
         </Form.Group>
-      </Row> */}
+      </Row>
       <Button type="submit">Submit form</Button>
     </Form>
   );
