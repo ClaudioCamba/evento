@@ -47,6 +47,7 @@ function NavigationBar() {
           { !signedInUser ?  <Link to="/account">Sign In</Link> :
           <>
               <Link to="/account">Account</Link> 
+              <div className="vr" />
               <Link onClick={signOutAcc}>Sign Out</Link> 
           </>
           }

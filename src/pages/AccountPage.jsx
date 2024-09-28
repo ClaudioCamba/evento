@@ -11,8 +11,8 @@ function AccountPage () {
         { signedInUser ? <EventForm signedInUser={signedInUser} /> : null}
         <SignInUpForm />
         <button onClick={()=>{
-      console.log(signedInUser)
-  }}>User Details</button>
+            console.log(signedInUser)
+        }}>User Details</button>
     </main>
     )
 }
