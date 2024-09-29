@@ -15,6 +15,8 @@ function EventForm({signedInUser}) {
   const [formAddress, setFormAddress] = useState('');
   const [formDesc, setFormDesc] = useState('');
   const [formImage, setFormImage] = useState(null);
+  const [formTime, setFormTime] = useState(null);
+  const [formDuration, setFormDuration] = useState(1);
   const [isLoading,setIsLoading] = useState(false)
 
   const eventDetail = {
@@ -25,7 +27,9 @@ function EventForm({signedInUser}) {
     price: formPrice, 
     address: formAddress, 
     event_desc: formDesc,
-    img_path: null
+    img_path: null,
+    time: formTime,
+    duration: formDuration
   }
 
   const handleSubmit = (event) => {
@@ -39,12 +43,13 @@ function EventForm({signedInUser}) {
       uploadImage(formImage, formImage.name)
       .then(({data})=> {
         eventDetail.img_path = data.fullPath;
+        console.log(eventDetail)
         return insertEventData(eventDetail);
-      }).then((data)=>{
+      }).then((data)=> {
         console.log('done',data)
-      }).catch((err)=>{
+      }).catch((err)=> {
         console.log(err)
-      }).finally(()=>{
+      }).finally(()=> {
         setIsLoading(false);
       })
     }
@@ -69,19 +74,35 @@ function EventForm({signedInUser}) {
         </Form.Group>
         </Row>
         <Row className="mb-3">
-        <Form.Group as={Col} md="4" controlId="eventDate">
+        <Form.Group as={Col} md="3" controlId="eventDate">
           <Form.Label>Date</Form.Label>
           <Form.Control
             required
-            type="date"
+            type="datetime-local"
             min={new Date().toISOString().split("T")[0]}
-            onChange={(event)=>{setFormDate(event.target.value)}}
+            onChange={(event)=>{
+              setFormTime(event.target.value.split('T')[1])
+              setFormDate(event.target.value)
+            }}
             value={formDate}
           />
           <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
         </Form.Group>
-        <Form.Group as={Col} md="4" controlId="eventPrice">
-          <Form.Label>Price</Form.Label>
+        <Form.Group as={Col} md="2" controlId="eventDuration">
+          <Form.Label>Duration (hours)</Form.Label>
+          <Form.Control
+            required
+            type="number"
+            min={1}
+            onChange={(event)=>{
+              setFormDuration(event.target.value)
+            }}
+            value={formDuration}
+          />
+          <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+        </Form.Group>
+        <Form.Group as={Col} md="3" controlId="eventPrice">
+          <Form.Label>Price (free events enter 0)</Form.Label>
           <InputGroup className="mb-3">
             <InputGroup.Text>£</InputGroup.Text>
             <Form.Control 
@@ -90,7 +111,7 @@ function EventForm({signedInUser}) {
               type="number"
               step="any"
               min="0"
-              placeholder='For free events enter 0'
+              placeholder='0'
               onChange={(event)=>{setFormPrice(event.target.value)}}
               value={formPrice}
             />
@@ -131,7 +152,7 @@ function EventForm({signedInUser}) {
       </Row>
       <Row className="mb-3">
         <Form.Group as={Col} md="8" controlId="eventImage">
-          <Form.Label>Event Image</Form.Label>
+          <Form.Label>Event Image (image png, jpg or jpeg format and max size 1MB)</Form.Label>
           <Form.Control 
             required
             type="file"
