@@ -8,7 +8,7 @@ import fetchEventData from '../utils/fetchEventData';
 
 export default function SignInUpForm() {
   const [session, setSession] = useState(null);
-  const { signedInUser, setSignedInUser } = useContext(SignedInUserContext)
+  // const { signedInUser, setSignedInUser } = useContext(SignedInUserContext)
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
@@ -29,12 +29,15 @@ export default function SignInUpForm() {
     <Auth supabaseClient={supabase} appearance={{ theme: ThemeSupa }} providers={[]} theme="light"/>
       </>)
   } else {
-    return (
-        <div>
 
-            <p>Logged in!</p>
-
-        </div>
-    )
   }
+  // else {
+  //   return (
+  //       <div>
+
+  //           <p>Logged in!</p>
+
+  //       </div>
+  //   )
+  // }
 }

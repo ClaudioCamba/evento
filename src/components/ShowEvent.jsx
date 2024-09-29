@@ -1,16 +1,27 @@
 import { useState, useEffect, useContext } from 'react';
 import { SignedInUserContext } from '../context/SignedInUser';
+import { useFetcher, useNavigate } from 'react-router-dom';
 import Image from 'react-bootstrap/Image';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import insertSignUpData from '../utils/insertSignUpData';
 
 function ShowEvent ({event}) {
     const { signedInUser, setSignedInUser } = useContext(SignedInUserContext);
+    const [signedUp, setSignedUp] = useState(false);
     const url = import.meta.env.VITE_PUBLIC_SUPABASE_URL;
+    const navigate = useNavigate();
 
-   useEffect(()=>{
-    console.log(signedInUser)
-   },[signedInUser]);
+    const signUp = () => {
+        insertSignUpData(event.id,signedInUser.user.id)
+        .then((data)=> {
+            setSignedUp(data);
+        }).catch((err)=>{console.log(err)})
+    };
+
+    useEffect(()=>{
+
+    },[])
 
     return (<div id="show-event">
         <Image src={`${url}/storage/v1/object/public/${event.img_path}`} fluid />
@@ -18,8 +29,12 @@ function ShowEvent ({event}) {
       <Card.Header as="h1">{event.title}</Card.Header>
       <Card.Body>
         {
-            signedInUser ? <Button variant="primary">Sign Up</Button> : 
-            <Button variant="primary">Login to sign up</Button>
+            signedInUser ? 
+            signedUp ? <Button variant="danger" onClick={()=>console.log('cancel signup')}>Cancel Sign Up</Button> :
+            <Button variant="primary" onClick={signUp}>Sign Up</Button> : 
+            <Button variant="primary" onClick={()=>{
+                navigate('/account', { state: { id: event.id } })
+            }}>Log in to sign up</Button>
         }
       
       </Card.Body>
