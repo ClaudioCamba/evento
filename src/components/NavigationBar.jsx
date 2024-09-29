@@ -44,11 +44,11 @@ function NavigationBar() {
             <Link to="/eventlist">Events</Link>
           </Nav>
           <Nav>
-          { !signedInUser ?  <Link to="/account">Sign In</Link> :
+          { !signedInUser ?  <Link to="/account">Login In</Link> :
           <>
               <Link to="/account">Account</Link> 
               <div className="vr" />
-              <Link onClick={signOutAcc}>Sign Out</Link> 
+              <Link onClick={signOutAcc}>Log Out</Link> 
           </>
           }
           </Nav>
