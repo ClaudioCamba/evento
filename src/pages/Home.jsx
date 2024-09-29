@@ -1,5 +1,5 @@
 import EventCardList from "../components/EventCardList";
-import AddToCalendar from "../components/addToCalendar";
+import AddToCalendar from "../components/AddToCalendar";
 
 function Homepage () {
 
