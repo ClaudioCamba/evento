@@ -1,7 +1,7 @@
 import EventCardList from "../components/EventCardList";
 
 function EventListPage () {
-    return (<main id="event-page">
+    return (<main id="eventlist-page">
         <h1>Event Page</h1>
         <EventCardList />
     </main>)
