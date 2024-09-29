@@ -4,7 +4,8 @@ import { Routes, Route } from 'react-router-dom';
 import Homepage from './Home';
 import AccountPage from './AccountPage';
 import NavigationBar from '../components/NavigationBar';
-
+import EventPage from './EventPage';
+import EventListPage from './EventsListPage';
 
 export default function App () {
   
@@ -13,7 +14,8 @@ export default function App () {
       <Routes>
         <Route path="/" element={ <Homepage /> } />
         <Route path="/account" element={ <AccountPage /> } />
-        <Route path="/eventlist" element={ <h1>Event List Page</h1> } />
-        <Route path="/event" element={ <h1>Event Page</h1> } />
+        <Route path="/eventlist" element={ <EventListPage /> } />
+        <Route path="/event/:id" element={ <EventPage /> } />
+        <Route path="/*" element={ <h1>We cannot find the page you're looking for</h1> } />
       </Routes>
   </>)}

@@ -1,6 +1,6 @@
 import supabase from '../utils/supabaseClient';
 
-const insertEventData = ({user_id, email, title, date, address, price, event_desc, img_path}) => {
+const insertEventData = ({user_id, email, title, date, address, price, event_desc, img_path, time, duration}) => {
     return supabase.from('events')
     .insert([{ 
         user_id: user_id,
@@ -10,7 +10,9 @@ const insertEventData = ({user_id, email, title, date, address, price, event_des
         address: address,
         price: price,
         event_desc: event_desc,
-        img_path: img_path
+        img_path: img_path,
+        time: time,
+        duration: duration
     }])
     .select();
 }
