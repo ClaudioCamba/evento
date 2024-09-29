@@ -5,8 +5,9 @@ import Image from 'react-bootstrap/Image';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import insertSignUpData from '../utils/insertSignUpData';
+import fetchSignUp from '../utils/fetchSignUp';
 
-function ShowEvent ({event}) {
+function ShowEvent ({ event }) {
     const { signedInUser, setSignedInUser } = useContext(SignedInUserContext);
     const [signedUp, setSignedUp] = useState(false);
     const url = import.meta.env.VITE_PUBLIC_SUPABASE_URL;
@@ -16,11 +17,14 @@ function ShowEvent ({event}) {
         insertSignUpData(event.id,signedInUser.user.id)
         .then((data)=> {
             setSignedUp(data);
-        }).catch((err)=>{console.log(err)})
+        }).catch((err)=>{ console.log(err) })
     };
 
     useEffect(()=>{
-
+        fetchSignUp(event.id,signedInUser.user.id)
+        .then(({data})=> {
+            if (data.length > 0) setSignedUp(data)
+        }).catch((err)=>{ console.log(err) })
     },[])
 
     return (<div id="show-event">
@@ -30,7 +34,12 @@ function ShowEvent ({event}) {
       <Card.Body>
         {
             signedInUser ? 
-            signedUp ? <Button variant="danger" onClick={()=>console.log('cancel signup')}>Cancel Sign Up</Button> :
+            signedUp ?
+            <>
+                <Button variant="danger" onClick={()=>console.log('cancel signup')}>Cancel Sign Up</Button>
+                <Button variant="danger" onClick={()=>console.log('cancel signup')}>Cancel Sign Up</Button>
+            </>
+            :
             <Button variant="primary" onClick={signUp}>Sign Up</Button> : 
             <Button variant="primary" onClick={()=>{
                 navigate('/account', { state: { id: event.id } })
