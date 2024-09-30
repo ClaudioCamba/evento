@@ -34,14 +34,14 @@ function NavigationBar() {
     }, [session])
 
   return (
-    <Navbar collapseOnSelect expand="md" className="bg-body-tertiary">
+    <Navbar collapseOnSelect expand="md" id="main-nav" className="bg-body-tertiary">
       <Container>
         <Navbar.Brand><Link to="/">EVENTO</Link></Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
             <Link to="/">Home</Link>
-            <Link to="/eventlist">Events</Link>
+            {/* <Link to="/eventlist">Events</Link> */}
           </Nav>
           <Nav>
           { !signedInUser ?  <Link to="/account">Login In</Link> :

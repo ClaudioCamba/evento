@@ -52,9 +52,55 @@
   }
   
 //   -----------------------------------------------------
+#main-nav {
+  a {
+    padding:6px;
+    font-weight: bold;
+  }
+}
 
 main {
-  // text-align: center;
-  max-width:900px;
+  text-align: center;
+  max-width: 1000px;
+  padding: 12px;
   margin: 0 auto;
+  margin-bottom: 100px;
+
+  h1 {
+    padding: 24px 12px;
+  }
+
+  .page-banner {
+    position: relative;
+    text-align: center;
+    color: #000;
+    background-color: #FFF;
+
+    .centered {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #FFF;
+      width:100%;
+    }
+  }
+
+  .event-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  #event-form {
+    max-width:700px;
+    margin: 0 auto;
+  }
+
+  .signup-button {
+    justify-content: center;
+  }
 }

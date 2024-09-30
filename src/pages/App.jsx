@@ -14,7 +14,7 @@ export default function App () {
       <Routes>
         <Route path="/" element={ <Homepage /> } />
         <Route path="/account" element={ <AccountPage /> } />
-        <Route path="/eventlist" element={ <EventListPage /> } />
+        {/* <Route path="/eventlist" element={ <EventListPage /> } /> */}
         <Route path="/event/:id" element={ <EventPage /> } />
         <Route path="/*" element={ <h1>We cannot find the page you're looking for</h1> } />
       </Routes>

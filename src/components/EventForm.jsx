@@ -58,10 +58,10 @@ function EventForm({signedInUser}) {
   };
 
   return (
-    <Form noValidate validated={validated} onSubmit={handleSubmit}>
-      {isLoading ? <p>Loading...</p> : <p>Waiting</p>}
+    <Form noValidate validated={validated} onSubmit={handleSubmit} id='event-form'>
+      {isLoading ? <h1>Loading...</h1> : <h1>Create Event Form</h1>}
       <Row className="mb-3">
-        <Form.Group as={Col} md="8" controlId="eventTitle">
+        <Form.Group as={Col} md="12" controlId="eventTitle">
           <Form.Label>Event Title</Form.Label>
           <Form.Control
             required
@@ -74,7 +74,7 @@ function EventForm({signedInUser}) {
         </Form.Group>
         </Row>
         <Row className="mb-3">
-        <Form.Group as={Col} md="3" controlId="eventDate">
+        <Form.Group as={Col} md="4" controlId="eventDate">
           <Form.Label>Date</Form.Label>
           <Form.Control
             required
@@ -88,7 +88,7 @@ function EventForm({signedInUser}) {
           />
           <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
         </Form.Group>
-        <Form.Group as={Col} md="2" controlId="eventDuration">
+        <Form.Group as={Col} md="4" controlId="eventDuration">
           <Form.Label>Duration (hours)</Form.Label>
           <Form.Control
             required
@@ -101,7 +101,7 @@ function EventForm({signedInUser}) {
           />
           <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
         </Form.Group>
-        <Form.Group as={Col} md="3" controlId="eventPrice">
+        <Form.Group as={Col} md="4" controlId="eventPrice">
           <Form.Label>Price (free events enter 0)</Form.Label>
           <InputGroup className="mb-3">
             <InputGroup.Text>£</InputGroup.Text>
@@ -120,7 +120,7 @@ function EventForm({signedInUser}) {
         </Form.Group>
       </Row>
       <Row className="mb-3">
-        <Form.Group as={Col} md="8" controlId="eventAddress">
+        <Form.Group as={Col} md="12" controlId="eventAddress">
           <Form.Label>Address</Form.Label>
           <Form.Control 
             type="text" 
@@ -135,7 +135,7 @@ function EventForm({signedInUser}) {
         </Form.Group>
       </Row>
       <Row className="mb-3">
-        <Form.Group as={Col} md="8" controlId="eventDescription">
+        <Form.Group as={Col} md="12" controlId="eventDescription">
           <Form.Label>Event Description</Form.Label>
           <Form.Control 
             as="textarea" 
@@ -151,7 +151,7 @@ function EventForm({signedInUser}) {
         </Form.Group>
       </Row>
       <Row className="mb-3">
-        <Form.Group as={Col} md="8" controlId="eventImage">
+        <Form.Group as={Col} md="12" controlId="eventImage">
           <Form.Label>Event Image (image png, jpg or jpeg format and max size 1MB)</Form.Label>
           <Form.Control 
             required

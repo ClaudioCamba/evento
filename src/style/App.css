@@ -51,7 +51,47 @@ p, h1, h2, h3, h4, h5, h6 {
   isolation: isolate;
 }
 
+#main-nav a {
+  padding: 6px;
+  font-weight: bold;
+}
+
 main {
-  max-width: 900px;
+  text-align: center;
+  max-width: 1000px;
+  padding: 12px;
   margin: 0 auto;
+  margin-bottom: 100px;
+}
+main h1 {
+  padding: 24px 12px;
+}
+main .page-banner {
+  position: relative;
+  text-align: center;
+  color: #000;
+  background-color: #FFF;
+}
+main .page-banner .centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #FFF;
+  width: 100%;
+}
+main .event-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: stretch;
+  gap: 12px;
+}
+main #event-form {
+  max-width: 700px;
+  margin: 0 auto;
+}
+main .signup-button {
+  justify-content: center;
 }/*# sourceMappingURL=App.css.map */

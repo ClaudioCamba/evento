@@ -8,18 +8,19 @@ function EventCardList () {
     useEffect(()=>{
         fetchEventData().then(({data})=>{
             setEvents(data)
-            console.log(data)
         }).catch((err)=>{
-            console.log(err)
+
         })
     },[])
 
-    return (<div id="event-list">
-        <h1>Event Grid</h1>
-        {
-            events.map((event)=><EventCard key={event.id} event={event}/>)
-        }
-    </div>)
+    return (<>
+        <h1>Events</h1>
+        <div className="event-list">
+            {
+                events.map((event)=><EventCard key={event.id} event={event}/>)
+            }
+        </div>
+    </>)
 }
 
 export default EventCardList;

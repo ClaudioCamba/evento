@@ -50,7 +50,7 @@ function ShowEvent ({ event }) {
         {
             signedInUser ? 
             signedUp ?
-            <Row>
+            <Row className="signup-button">
                 <Col md="auto">
                     <Button variant="danger" onClick={cancelSignUp}>Cancel Sign Up</Button>
                 </Col>

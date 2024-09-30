@@ -8,7 +8,7 @@ function AddToCalendar ({eventDetail = null}) {
 const event = {
     title: `${eventDetail.event.title}`,
     description: `${eventDetail.event?.event_desc}`,
-    start: `${eventDetail.event.date} ${eventDetail?.event?.time} +0100`,
+    start: `${eventDetail.event.date} ${eventDetail?.event?.time} +0000`,
     duration: [eventDetail.event.duration, "hour"],
   };
   
@@ -21,8 +21,8 @@ const icsUrl = ics(event);
 
 return (
     <Dropdown>
-      <Dropdown.Toggle variant="success" id="dropdown-basic">
-        Dropdown Button
+      <Dropdown.Toggle variant="success" className="add-to-calendar" id="dropdown-basic">
+        Add To Calendar
       </Dropdown.Toggle>
 
       <Dropdown.Menu>
