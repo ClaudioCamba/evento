@@ -8,7 +8,6 @@ import fetchEventData from '../utils/fetchEventData';
 
 export default function SignInUpForm() {
   const [session, setSession] = useState(null);
-  // const { signedInUser, setSignedInUser } = useContext(SignedInUserContext)
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {

@@ -1,11 +1,17 @@
 import { useState, useEffect, useContext } from 'react';
 import { SignedInUserContext } from '../context/SignedInUser';
-import { useFetcher, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Image from 'react-bootstrap/Image';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import Col from 'react-bootstrap/Col';
+import Form from 'react-bootstrap/Form';
+import Row from 'react-bootstrap/Row';
 import insertSignUpData from '../utils/insertSignUpData';
 import fetchSignUp from '../utils/fetchSignUp';
+import deleteSignUp from '../utils/deleteSignUp';
+import AddToCalendar from './AddToCalendar';
+
 
 function ShowEvent ({ event }) {
     const { signedInUser, setSignedInUser } = useContext(SignedInUserContext);
@@ -15,16 +21,25 @@ function ShowEvent ({ event }) {
 
     const signUp = () => {
         insertSignUpData(event.id,signedInUser.user.id)
-        .then((data)=> {
-            setSignedUp(data);
+        .then(({data})=> {
+            if (data.length > 0) setSignedUp(true)
         }).catch((err)=>{ console.log(err) })
     };
 
-    useEffect(()=>{
-        fetchSignUp(event.id,signedInUser.user.id)
+    const cancelSignUp = () =>{
+        deleteSignUp(event.id,signedInUser.user.id)
         .then(({data})=> {
-            if (data.length > 0) setSignedUp(data)
+            if (data.length > 0) setSignedUp(false)
         }).catch((err)=>{ console.log(err) })
+    }
+
+    useEffect(()=>{
+        if (signedInUser) {
+            fetchSignUp(event.id,signedInUser.user.id)
+            .then(({data})=> {
+                if (data.length > 0) setSignedUp(true)
+            }).catch((err)=>{ console.log(err) })
+        }
     },[])
 
     return (<div id="show-event">
@@ -35,10 +50,14 @@ function ShowEvent ({ event }) {
         {
             signedInUser ? 
             signedUp ?
-            <>
-                <Button variant="danger" onClick={()=>console.log('cancel signup')}>Cancel Sign Up</Button>
-                <Button variant="danger" onClick={()=>console.log('cancel signup')}>Cancel Sign Up</Button>
-            </>
+            <Row>
+                <Col md="auto">
+                    <Button variant="danger" onClick={cancelSignUp}>Cancel Sign Up</Button>
+                </Col>
+                <Col md="auto">
+                    <AddToCalendar eventDetail={{event}}/>
+                </Col>
+            </Row>
             :
             <Button variant="primary" onClick={signUp}>Sign Up</Button> : 
             <Button variant="primary" onClick={()=>{
