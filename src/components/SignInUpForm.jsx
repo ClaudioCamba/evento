@@ -1,10 +1,7 @@
-import { useState, useEffect, useContext } from 'react'
-import { createClient } from '@supabase/supabase-js'
+import { useState, useEffect } from 'react'
 import { Auth } from '@supabase/auth-ui-react'
 import { ThemeSupa } from '@supabase/auth-ui-shared'
-import { SignedInUserContext } from '../context/SignedInUser';
 import supabase from '../utils/supabaseClient';
-import fetchEventData from '../utils/fetchEventData';
 
 export default function SignInUpForm() {
   const [session, setSession] = useState(null);
@@ -24,19 +21,10 @@ export default function SignInUpForm() {
   }, [])
 
   if (!session) {
-    return (<>
+    return (
     <Auth supabaseClient={supabase} appearance={{ theme: ThemeSupa }} providers={[]} theme="light"/>
-      </>)
+      )
   } else {
 
   }
-  // else {
-  //   return (
-  //       <div>
-
-  //           <p>Logged in!</p>
-
-  //       </div>
-  //   )
-  // }
 }

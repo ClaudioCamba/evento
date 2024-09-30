@@ -43,12 +43,12 @@ function EventForm({signedInUser}) {
       uploadImage(formImage, formImage.name)
       .then(({data})=> {
         eventDetail.img_path = data.fullPath;
-        console.log(eventDetail)
+       
         return insertEventData(eventDetail);
       }).then((data)=> {
-        console.log('done',data)
+      
       }).catch((err)=> {
-        console.log(err)
+   
       }).finally(()=> {
         setIsLoading(false);
       })

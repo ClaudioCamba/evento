@@ -23,14 +23,14 @@ function ShowEvent ({ event }) {
         insertSignUpData(event.id,signedInUser.user.id)
         .then(({data})=> {
             if (data.length > 0) setSignedUp(true)
-        }).catch((err)=>{ console.log(err) })
+        }).catch((err)=>{  })
     };
 
     const cancelSignUp = () =>{
         deleteSignUp(event.id,signedInUser.user.id)
         .then(({data})=> {
             if (data.length > 0) setSignedUp(false)
-        }).catch((err)=>{ console.log(err) })
+        }).catch((err)=>{  })
     }
 
     useEffect(()=>{
@@ -38,7 +38,7 @@ function ShowEvent ({ event }) {
             fetchSignUp(event.id,signedInUser.user.id)
             .then(({data})=> {
                 if (data.length > 0) setSignedUp(true)
-            }).catch((err)=>{ console.log(err) })
+            }).catch((err)=>{  })
         }
     },[])
 
@@ -72,6 +72,7 @@ function ShowEvent ({ event }) {
         <Card.Title>Duration: {event.duration} Hours</Card.Title>
         <Card.Title>Address: {event.address}</Card.Title>
         <Card.Title>Price: £{event.price}</Card.Title>
+        <Card.Title>Contact: {event.email}</Card.Title>
         <Card.Text>{event.event_desc}</Card.Text>
       </Card.Footer>
     </Card>
