@@ -4,20 +4,23 @@ import SignInUpForm from "../components/SignInUpForm";
 import { SignedInUserContext } from '../context/SignedInUser';
 import EventForm from '../components/EventForm';
 import PageBanner from '../components/PageBanner';
+import { useParams } from 'react-router-dom';
+import SignInForm from '../components/SignInForm';
 
-function AccountPage () {
+function SignInPage () {
     const { signedInUser, setSignedInUser } = useContext(SignedInUserContext);
-    const { state } = useLocation();
+    // const { state } = useLocation();
     const navigate = useNavigate();
+    const  { type } = useParams();
 
-    console.log(state)
+    console.log(type)
 
     return (
-    <main id="account-page">
-        { signedInUser ? <PageBanner title={'Account: '+signedInUser?.user?.email}/> : <PageBanner title={'Login | Register'}/> }
-        { signedInUser ? state ? navigate(`/event/${state.id}`) : <EventForm signedInUser={signedInUser} /> : <SignInUpForm /> }
+    <main id="register-page">
+        <h1>Sign In</h1>
+        <SignInForm />
     </main>
     )
 }
 
-export default AccountPage;
+export default SignInPage;

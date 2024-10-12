@@ -44,11 +44,14 @@ function NavigationBar() {
             {/* <Link to="/eventlist">Events</Link> */}
           </Nav>
           <Nav>
-          { !signedInUser ?  <Link to="/account">Login In</Link> :
+          { !signedInUser ?
           <>
-              <Link to="/account">Account</Link> 
-              <div className="vr" />
-              <Link onClick={signOutAcc}>Log Out</Link> 
+            <Link to="/account/sign_in">Sign In</Link> 
+            <Link to="/account/sign_up">Sign Up</Link>
+          </>:<>
+            <Link to="/account">Account</Link> 
+            <div className="vr" />
+            <Link onClick={signOutAcc}>Log Out</Link> 
           </>
           }
           </Nav>
