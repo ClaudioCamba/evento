@@ -46,8 +46,8 @@ function NavigationBar() {
           <Nav>
           { !signedInUser ?
           <>
-            <Link to="/account/sign_in">Sign In</Link> 
-            <Link to="/account/sign_up">Sign Up</Link>
+            <Link to="/sign_in">Sign In</Link> 
+            <Link to="/sign_up">Sign Up</Link>
           </>:<>
             <Link to="/account">Account</Link> 
             <div className="vr" />

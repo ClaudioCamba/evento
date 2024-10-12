@@ -4,26 +4,17 @@ import SignInUpForm from "../components/SignInUpForm";
 import { SignedInUserContext } from '../context/SignedInUser';
 import EventForm from '../components/EventForm';
 import PageBanner from '../components/PageBanner';
-import { useParams } from 'react-router-dom';
-import SignInForm from '../components/SignInForm';
+import SignInUpTabs from '../components/SignInUpTabs';
 
-function SignInPage () {
+function SignInUpPage () {
     const { signedInUser, setSignedInUser } = useContext(SignedInUserContext);
-    const  { type } = useParams();
-    // const { state } = useLocation();
-    // const navigate = useNavigate();
-    const [ view, setView ] = useState(type);
-
-
-
-    console.log(view)
+    const { pathname } = useLocation();
 
     return (
     <main id="register-page">
-        <h1>Sign In</h1>
-        <SignInForm type={type} />
+        <SignInUpTabs type={pathname.split('/')[1]} />
     </main>
     )
 }
 
-export default SignInPage;
+export default SignInUpPage;

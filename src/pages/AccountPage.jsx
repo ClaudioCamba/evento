@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from 'react';
+import { SignedInUserContext } from '../context/SignedInUser';
 import { useLocation, useNavigate } from 'react-router-dom';
 import SignInUpForm from "../components/SignInUpForm";
-import { SignedInUserContext } from '../context/SignedInUser';
 import EventForm from '../components/EventForm';
 import PageBanner from '../components/PageBanner';
 

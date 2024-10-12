@@ -2,8 +2,9 @@ import { useState, useEffect } from 'react'
 import { Auth } from '@supabase/auth-ui-react'
 import { ThemeSupa } from '@supabase/auth-ui-shared'
 import supabase from '../utils/supabaseClient';
+import { redirect } from "react-router-dom";
 
-export default function SignInUpForm() {
+export default function SignInForm({type="sign_in"}) {
   const [session, setSession] = useState(null);
 
   useEffect(() => {
@@ -22,9 +23,21 @@ export default function SignInUpForm() {
 
   if (!session) {
     return (
-    <Auth supabaseClient={supabase} appearance={{ theme: ThemeSupa }} providers={[]} theme="light"/>
+        <Auth supabaseClient={supabase} appearance={{
+          theme: ThemeSupa,
+          variables: {
+            default: {
+              colors: {
+                brand: 'red',
+                brandAccent: 'darkred',
+              },
+            },
+          },
+        }} 
+        providers={[]} 
+        theme="light"
+        view={`${type}`}
+        />
       )
-  } else {
-
   }
 }
