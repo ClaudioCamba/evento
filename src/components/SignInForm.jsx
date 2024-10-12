@@ -3,8 +3,9 @@ import { Auth } from '@supabase/auth-ui-react'
 import { ThemeSupa } from '@supabase/auth-ui-shared'
 import supabase from '../utils/supabaseClient';
 
-export default function SignInForm() {
+export default function SignInForm({type}) {
   const [session, setSession] = useState(null);
+  console.log(type)
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
@@ -22,7 +23,21 @@ export default function SignInForm() {
 
   if (!session) {
     return (
-        <Auth supabaseClient={supabase} appearance={{ theme: ThemeSupa }} providers={[]} theme="light"/>
+        <Auth supabaseClient={supabase} appearance={{
+          theme: ThemeSupa,
+          variables: {
+            default: {
+              colors: {
+                brand: 'red',
+                brandAccent: 'darkred',
+              },
+            },
+          },
+        }} 
+        providers={[]} 
+        theme="light"
+        view={`${type}`}
+        />
       )
   } else {
     console.log('Logged-in: '+ session)

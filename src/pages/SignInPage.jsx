@@ -9,16 +9,19 @@ import SignInForm from '../components/SignInForm';
 
 function SignInPage () {
     const { signedInUser, setSignedInUser } = useContext(SignedInUserContext);
-    // const { state } = useLocation();
-    const navigate = useNavigate();
     const  { type } = useParams();
+    // const { state } = useLocation();
+    // const navigate = useNavigate();
+    const [ view, setView ] = useState(type);
 
-    console.log(type)
+
+
+    console.log(view)
 
     return (
     <main id="register-page">
         <h1>Sign In</h1>
-        <SignInForm />
+        <SignInForm type={type} />
     </main>
     )
 }
