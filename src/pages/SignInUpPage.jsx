@@ -11,9 +11,9 @@ function SignInUpPage () {
     const { pathname } = useLocation();
 
     return (
-    <main id="register-page">
-        <SignInUpTabs type={pathname.split('/')[1]} />
-    </main>
+        <main id="sign-inout-page">
+            <SignInUpTabs type={pathname.split('/')[1]} />
+        </main>
     )
 }
 

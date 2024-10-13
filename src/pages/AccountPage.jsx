@@ -13,10 +13,10 @@ function AccountPage () {
     console.log(state)
 
     return (
-    <main id="account-page">
-        { signedInUser ? <PageBanner title={'Account: '+signedInUser?.user?.email}/> : <PageBanner title={'Login | Register'}/> }
-        { signedInUser ? state ? navigate(`/event/${state.id}`) : <EventForm signedInUser={signedInUser} /> : <SignInUpForm /> }
-    </main>
+        <main id="account-page">
+            { signedInUser ? <PageBanner title={'Account: '+signedInUser?.user?.email}/> : <PageBanner title={'Login | Register'}/> }
+            { signedInUser ? state ? navigate(`/event/${state.id}`) : <EventForm signedInUser={signedInUser} /> : <SignInUpForm /> }
+        </main>
     )
 }
 

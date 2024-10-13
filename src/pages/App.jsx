@@ -13,8 +13,7 @@ import SignInUpPage from './SignInUpPage';
 
 export default function App () {
   const { signedInUser, setSignedInUser } = useContext(SignedInUserContext);
-  const navigate = useNavigate();
-  console.log(signedInUser)
+
   return (<>
       <NavigationBar />
       <Routes>
