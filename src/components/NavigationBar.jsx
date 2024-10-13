@@ -8,30 +8,7 @@ import signOutAcc from '../utils/signOutAcc';
 import supabase from '../utils/supabaseClient';
 
 function NavigationBar() {
-    const { signedInUser, setSignedInUser } = useContext(SignedInUserContext);
-    const [session, setSession] = useState(null);
-  
-    useEffect(() => {
-      supabase.auth.getSession().then(({ data: { session } }) => {
-        setSession(session)
-      })
-  
-      const {
-        data: { subscription },
-      } = supabase.auth.onAuthStateChange((_event, session) => {
-        setSession(session)
-      })
-  
-      return () => subscription.unsubscribe()
-    }, [])
-
-    useEffect(() => {
-        if (!session){
-            setSignedInUser(null)
-        } else {
-            setSignedInUser(session)
-        }
-    }, [session])
+  const { signedInUser } = useContext(SignedInUserContext);
 
   return (
     <Navbar collapseOnSelect expand="md" id="main-nav" className="bg-body-tertiary">

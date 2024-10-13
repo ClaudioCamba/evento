@@ -10,8 +10,6 @@ function AccountPage () {
     const { state } = useLocation();
     const navigate = useNavigate();
 
-    console.log(state)
-
     return (
         <main id="account-page">
             { signedInUser ? <PageBanner title={'Account: '+signedInUser?.user?.email}/> : <PageBanner title={'Login | Register'}/> }
