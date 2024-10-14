@@ -1,37 +1,13 @@
-import { useState, useEffect, useContext } from 'react'
+import { useContext } from 'react'
+import { SignedInUserContext } from '../context/SignedInUser';
+import { Link } from "react-router-dom";
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import { SignedInUserContext } from '../context/SignedInUser';
-import { Link } from "react-router-dom";
 import signOutAcc from '../utils/signOutAcc';
-import supabase from '../utils/supabaseClient';
 
 function NavigationBar() {
-    const { signedInUser, setSignedInUser } = useContext(SignedInUserContext);
-    const [session, setSession] = useState(null);
-  
-    useEffect(() => {
-      supabase.auth.getSession().then(({ data: { session } }) => {
-        setSession(session)
-      })
-  
-      const {
-        data: { subscription },
-      } = supabase.auth.onAuthStateChange((_event, session) => {
-        setSession(session)
-      })
-  
-      return () => subscription.unsubscribe()
-    }, [])
-
-    useEffect(() => {
-        if (!session){
-            setSignedInUser(null)
-        } else {
-            setSignedInUser(session)
-        }
-    }, [session])
+  const { signedInUser } = useContext(SignedInUserContext);
 
   return (
     <Navbar collapseOnSelect expand="md" id="main-nav" className="bg-body-tertiary">
@@ -46,8 +22,8 @@ function NavigationBar() {
           <Nav>
           { !signedInUser ?
           <>
-            <Link to="/account/sign_in">Sign In</Link> 
-            <Link to="/account/sign_up">Sign Up</Link>
+            <Link to="/sign_in">Sign In</Link> 
+            <Link to="/sign_up">Sign Up</Link>
           </>:<>
             <Link to="/account">Account</Link> 
             <div className="vr" />

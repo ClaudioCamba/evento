@@ -14,7 +14,7 @@ import AddToCalendar from './AddToCalendar';
 
 
 function ShowEvent ({ event }) {
-    const { signedInUser, setSignedInUser } = useContext(SignedInUserContext);
+    const { signedInUser } = useContext(SignedInUserContext);
     const [signedUp, setSignedUp] = useState(false);
     const url = import.meta.env.VITE_PUBLIC_SUPABASE_URL;
     const navigate = useNavigate();
