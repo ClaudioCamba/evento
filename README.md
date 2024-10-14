@@ -6,6 +6,7 @@ Users of the platform can register and signed up to events and if they wish add 
 
 ## 🟩 HOW IT WORKS
 > [!TIP]
+> ### Website Link: https://appevento.netlify.app/
 > ### Sign-In Info
 > - Staff email: claudiocamba1@gmail.com | password: Testing4321
 > - User email: user@test.com | password: test321
@@ -52,7 +53,7 @@ Users of the platform can register and signed up to events and if they wish add 
 
 ## 🟦 FUTURE FEATURES
 > [!NOTE]
-> - Add payment feature to allow users to pay online for certain events
-> - Use google map API to select event location on event creation form
-> - Show event location on a map within the event age
-> - Create event list page with filters based on event values (location, price, number of attendees ect)
+> - 💵 Add payment feature to allow users to pay online for certain events
+> - 🏙 Use google map API to select event location on event creation form
+> - 🗺 Show event location on a map within the event age
+> - 📚 Create event list page with filters based on event values (location, price, number of attendees ect)
