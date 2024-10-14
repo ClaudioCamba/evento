@@ -12,7 +12,7 @@ function AccountPage () {
 
     return (
         <main id="account-page">
-            { signedInUser ? <PageBanner title={'Account: '+signedInUser?.user?.email}/> : <PageBanner title={'Login | Register'}/> }
+            { signedInUser ? <h1>{'Account: '+signedInUser?.user?.email}</h1> : <h1>{'Login | Register'}</h1> }
             { signedInUser ? state ? navigate(`/event/${state.id}`) : <EventForm signedInUser={signedInUser} /> : <SignInUpForm /> }
         </main>
     )
