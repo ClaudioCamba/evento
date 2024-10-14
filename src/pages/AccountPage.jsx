@@ -6,7 +6,7 @@ import EventForm from '../components/EventForm';
 import PageBanner from '../components/PageBanner';
 
 function AccountPage () {
-    const { signedInUser, setSignedInUser } = useContext(SignedInUserContext);
+    const { signedInUser } = useContext(SignedInUserContext);
     const { state } = useLocation();
     const navigate = useNavigate();
 

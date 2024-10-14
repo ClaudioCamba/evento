@@ -1,11 +1,10 @@
-import { useState, useEffect, useContext } from 'react'
+import { useContext } from 'react'
+import { SignedInUserContext } from '../context/SignedInUser';
+import { Link } from "react-router-dom";
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import { SignedInUserContext } from '../context/SignedInUser';
-import { Link } from "react-router-dom";
 import signOutAcc from '../utils/signOutAcc';
-import supabase from '../utils/supabaseClient';
 
 function NavigationBar() {
   const { signedInUser } = useContext(SignedInUserContext);

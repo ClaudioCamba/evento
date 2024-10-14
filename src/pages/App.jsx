@@ -8,31 +8,10 @@ import Homepage from './Home';
 import AccountPage from './AccountPage';
 import NavigationBar from '../components/NavigationBar';
 import EventPage from './EventPage';
-import EventListPage from './EventsListPage';
 import SignInUpPage from './SignInUpPage';
-import supabase from '../utils/supabaseClient';
 
 export default function App () {
-  const { signedInUser, setSignedInUser } = useContext(SignedInUserContext);
-  const { data } = supabase.auth.onAuthStateChange((event, session) => {
-    console.log(event, session)
-  
-    if (event === 'INITIAL_SESSION') {
-      // handle initial session
-    } else if (event === 'SIGNED_IN') {
-      // handle sign in event
-      setSignedInUser(session)
-    } else if (event === 'SIGNED_OUT') {
-      // handle sign out event
-      setSignedInUser(null)
-    } else if (event === 'PASSWORD_RECOVERY') {
-      // handle password recovery event
-    } else if (event === 'TOKEN_REFRESHED') {
-      // handle token refreshed event
-    } else if (event === 'USER_UPDATED') {
-      // handle user updated event
-    }
-  })
+  const { signedInUser } = useContext(SignedInUserContext);
 
   return (<>
       <NavigationBar />
