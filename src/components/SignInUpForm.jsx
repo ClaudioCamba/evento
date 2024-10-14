@@ -60,8 +60,8 @@ export default function SignInForm({type="sign_in"}) {
           variables: {
             default: {
               colors: {
-                brand: 'red',
-                brandAccent: 'darkred',
+                brand: '#0d6efd',
+                brandAccent: '#0b5ed7',
               },
             },
           },
