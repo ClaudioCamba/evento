@@ -3,7 +3,7 @@ import { fetchEvents, fetchEventsByIds } from '../utils/fetchEventData';
 import { updateDate } from '../utils/updateDateFormat';
 import EventCard from './EventCard';
 
-function EventCardList ({title="Events", showEventsIds = []}) {
+function EventCardList ({title="Events", showEventsIds=[], control=false}) {
     const [events, setEvents] = useState(showEventsIds);
     
     useEffect(()=> {
@@ -28,7 +28,13 @@ function EventCardList ({title="Events", showEventsIds = []}) {
         <h1>{title}</h1>
         <div className="event-list">
             {
-                events.map((event, index)=> <EventCard key={`${event.id}${index}`} event={event}/>)
+                events.map((event, index)=> { 
+                    return <EventCard 
+                        key={`${event.id}${index}`} 
+                        event={event}
+                        control={control}
+                    />
+                })
             }
         </div>
     </>)

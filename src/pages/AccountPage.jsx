@@ -15,10 +15,8 @@ function AccountPage () {
         fetchProfileSignupEvents(signedInUser.user.id)
         .then(({data}) => {
             if (data.length > 0) {
-                console.log(data)
                 if (data[0].hasOwnProperty("staff")){
                     setIsStaff(data[0].staff);
-         
                 }
                 if (data[0].hasOwnProperty("events")){
                     const createdEventIds = data[0].events.map((event)=> event.id);
@@ -49,7 +47,7 @@ function AccountPage () {
             {
                 createdEvents.length > 0 ?
                 <EventCardList 
-                    title= {`Events i've created`} 
+                    title= {`Created Events`} 
                     showEventsIds= {createdEvents}
                     control= {isStaff}
                 /> : null
@@ -57,7 +55,7 @@ function AccountPage () {
             {
                 attendEvents.length > 0 ?
                 <EventCardList 
-                    title= {`Events i've signed up for...`} 
+                    title= {`Events To Attend`} 
                     showEventsIds={attendEvents}
                 /> : null
             }
