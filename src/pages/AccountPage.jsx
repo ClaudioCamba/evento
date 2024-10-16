@@ -36,19 +36,18 @@ function AccountPage () {
                 isStaff ? 
                 <>
                     <h1>Staff Account</h1>
-                    <EventForm signedInUser={signedInUser} /> 
+                    <EventForm signedInUser={signedInUser} />
                 </> :
                 <>
                     <h1>User Account</h1>
-                    {
-                        attendEvents.length > 0 ?
-                        <EventCardList 
-                            title={`Events i've signed up for...`} 
-                            showEventsIds={attendEvents}
-                        /> 
-                        : null
-                    }
                 </>
+            }
+            {
+                attendEvents.length > 0 ?
+                <EventCardList 
+                    title={`Events i've signed up for...`} 
+                    showEventsIds={attendEvents}
+                /> : null
             }
         </main>
     )
