@@ -1,9 +1,14 @@
 import supabase from '../utils/supabaseClient';
 
-const fetchEventData = () =>{
+export const fetchEvents = () =>{
     return supabase.from('events')
     .select('*')
     .order('created_at', { ascending: false });
 }
 
-export default fetchEventData;
+export const fetchEventsByIds = (ids) =>{
+    return supabase.from('events')
+    .select()
+    .in('id', ids)
+    .order('date', { ascending: true });
+}
