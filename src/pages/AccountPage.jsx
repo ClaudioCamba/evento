@@ -1,28 +1,32 @@
 import { useState, useEffect, useContext } from 'react';
 import { SignedInUserContext } from '../context/SignedInUser';
-import { useLocation, useNavigate } from 'react-router-dom';
-import SignInUpForm from "../components/SignInUpForm";
 import EventForm from '../components/EventForm';
 import PageBanner from '../components/PageBanner';
 import { fetchProfileSignupEvents } from '../utils/fetchProfile';
-import { fetchEventsByIds } from '../utils/fetchEventData';
 import EventCardList from "../components/EventCardList";
 
 function AccountPage () {
     const { signedInUser } = useContext(SignedInUserContext);
     const [isStaff, setIsStaff] = useState(false);
     const [attendEvents, setAttendEvents] = useState([]);
+    const [createdEvents, setCreatedEvents] = useState([]);
 
     useEffect(()=> {
         fetchProfileSignupEvents(signedInUser.user.id)
         .then(({data}) => {
             if (data.length > 0) {
+                console.log(data)
                 if (data[0].hasOwnProperty("staff")){
-                    setIsStaff(data[0].staff)
+                    setIsStaff(data[0].staff);
+         
+                }
+                if (data[0].hasOwnProperty("events")){
+                    const createdEventIds = data[0].events.map((event)=> event.id);
+                    setCreatedEvents(createdEventIds);
                 }
                 if (data[0].hasOwnProperty("signup")){
-                    const eventIds = data[0].signup.map((id)=> id.event_id);
-                    setAttendEvents(eventIds)
+                    const attendEventIds = data[0].signup.map((sign)=> sign.event_id);
+                    setAttendEvents(attendEventIds);
                 }
             }
         }).catch((err)=>{
@@ -43,9 +47,17 @@ function AccountPage () {
                 </>
             }
             {
+                createdEvents.length > 0 ?
+                <EventCardList 
+                    title= {`Events i've created`} 
+                    showEventsIds= {createdEvents}
+                    control= {isStaff}
+                /> : null
+            }
+            {
                 attendEvents.length > 0 ?
                 <EventCardList 
-                    title={`Events i've signed up for...`} 
+                    title= {`Events i've signed up for...`} 
                     showEventsIds={attendEvents}
                 /> : null
             }

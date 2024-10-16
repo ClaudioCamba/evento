@@ -8,6 +8,6 @@ export const fetchProfileByName = (user_name) =>{
 
 export const fetchProfileSignupEvents= (user_id) =>{
     return supabase.from('profiles')
-    .select('staff, user_id, user_name, signup(event_id)')
+    .select('staff, user_id, user_name, signup(event_id), events(id)')
     .eq('user_id', user_id)
 }
