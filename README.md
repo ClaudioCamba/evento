@@ -6,7 +6,7 @@ Users of the platform can register and signed up to events and if they wish add 
 
 ## 🟩 HOW IT WORKS
 > [!TIP]
-> ### Website Link: https://appevento.netlify.app/
+> ### Application Link: https://appevento.netlify.app/
 > ### Sign-In Information
 > - Staff email: claudiocamba1@gmail.com | password: Testing4321
 > - User email: user@test.com | password: test321
