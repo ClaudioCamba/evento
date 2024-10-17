@@ -4,7 +4,7 @@ import PageBanner from "../components/PageBanner";
 function Homepage () {
 
     return (<main id="home-page">
-        <h1>{'Homepage'}</h1>
+        <PageBanner title={'Homepage'}/>
         <EventCardList />
     </main>)
 }

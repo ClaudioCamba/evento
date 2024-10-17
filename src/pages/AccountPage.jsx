@@ -43,7 +43,7 @@ function AccountPage () {
     } else {
         if (isStaff){
             return (<main id="account-page">
-                    <h1>Staff Account</h1> 
+                    <PageBanner title={'Staff Account'}/>
                     <Tabs
                         defaultActiveKey="Create Event Form"
                         id="uncontrolled-tab-example"
@@ -77,7 +77,7 @@ function AccountPage () {
                 </main>)
         } else {
             return (<main id="account-page">
-                <h1>User Account</h1> 
+                <PageBanner title={'User Account'}/>
                 <Tabs
                     defaultActiveKey="Events To Attend"
                     id="uncontrolled-tab-example"
