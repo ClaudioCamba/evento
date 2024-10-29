@@ -51,7 +51,10 @@ function AccountPage () {
                         justify
                     >
                     <Tab eventKey="Create Event Form" title="Create Event Form">
-                    <EventForm signedInUser={signedInUser} />
+                        <EventForm 
+                            signedInUser={signedInUser} 
+                            setCreatedEvents={setCreatedEvents} 
+                        />
                     </Tab>
                     <Tab eventKey="Created Events" title="Created Events">
                     {

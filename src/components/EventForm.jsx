@@ -7,17 +7,19 @@ import Row from 'react-bootstrap/Row';
 import insertEventData from '../utils/insertEventData';
 import uploadImage from '../utils/uploadImage'
 
-function EventForm({signedInUser}) {
+function EventForm({signedInUser, setCreatedEvents}) {
   const [validated, setValidated] = useState(false);
   const [formTitle, setFormTitle] = useState('');
   const [formDate, setFormDate] = useState('');
-  const [formPrice, setFormPrice] = useState('');
+  const [formPrice, setFormPrice] = useState(0);
   const [formAddress, setFormAddress] = useState('');
   const [formDesc, setFormDesc] = useState('');
   const [formImage, setFormImage] = useState(null);
   const [formTime, setFormTime] = useState(null);
   const [formDuration, setFormDuration] = useState(1);
-  const [isLoading,setIsLoading] = useState(false)
+  const [isLoading,setIsLoading] = useState(false);
+  const [imgError, setImgError] = useState('');
+  const [newEvent, setNewEvent] = useState(null);
 
   const eventDetail = {
     user_id: signedInUser.user.id, 
@@ -37,24 +39,48 @@ function EventForm({signedInUser}) {
     if (form.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
+      setValidated(true);
     } else {
       event.preventDefault();
-      setIsLoading(true);
-      uploadImage(formImage, formImage.name)
-      .then(({data})=> {
-        eventDetail.img_path = data.fullPath;
-       
-        return insertEventData(eventDetail);
-      }).then((data)=> {
+      event.stopPropagation();
+      let imgErr = '';
+      const imgSizeCheck = formImage.size <= 1000000;
+      const formats = ["image/png", "image/jpeg"];
+      const imgFormatCheck = formats.some(format => formImage.type.includes(format));
+
+      if (imgSizeCheck === false) imgErr = `Please upload an image size equal to or below 1MB.`;
+      if (imgFormatCheck === false) imgErr = `The file format (${formImage.type.split('/')[1]}) does not match acceptable formats (png, jpg, jpeg).`;
+
+      if (imgSizeCheck && imgFormatCheck){
+        setIsLoading(true);
+        uploadImage(formImage, formImage.name)
+        .then(({data})=> {
+          eventDetail.img_path = data.fullPath;
+          return insertEventData(eventDetail);
+        }).then(({data})=> {
+          console.log(data[0].id)
+          setCreatedEvents((val)=>{
+            const newArr = [...val]
+            newArr.push(data[0].id);
+            console.log(newArr);
+            return newArr;
+          })
+        }).catch((err)=> {
       
-      }).catch((err)=> {
-   
-      }).finally(()=> {
-        setIsLoading(false);
-      })
+        }).finally(()=> {
+          setIsLoading(false);
+        })
+      } 
+      
+      if (!imgSizeCheck || !imgFormatCheck) {
+        setValidated(false);
+        setImgError(imgErr);
+      } else {
+        setValidated(true);
+        setImgError('');
+      }
     }
 
-    setValidated(true);
   };
 
   return (
@@ -152,15 +178,15 @@ function EventForm({signedInUser}) {
       </Row>
       <Row className="mb-3">
         <Form.Group as={Col} md="12" controlId="eventImage">
-          <Form.Label>Event Image (image png, jpg or jpeg format and max size 1MB)</Form.Label>
+          <Form.Label>Upload Event Image <small>(image png, jpg or jpeg format and max size 1MB)</small>{imgError !== '' ? <><br></br><strong className="red-text">{imgError}</strong></> : null}</Form.Label>
           <Form.Control 
             required
             type="file"
-            accept="image/png, image/jpeg, image/jpg"
+            accept="image/png, image/jpeg, image/jpg, image/jp2"
             onChange={(event)=> setFormImage(event.target.files[0])}
           />
           <Form.Control.Feedback type="invalid">
-            Please provide a valid image file. (png, jpg or jpeg)
+            Please provide a valid image file. (png, jpg or jpeg and max size 1MB)
           </Form.Control.Feedback>
         </Form.Group>
       </Row>
