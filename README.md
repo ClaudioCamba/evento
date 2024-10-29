@@ -24,7 +24,8 @@ Users of the platform can register and signed up to events and if they wish add 
 >   - The add to calendar button shows several calendar services to add to (Google, Outlook, Office365 and Yahoo).
 > ### How To Create Events
 > https://github.com/user-attachments/assets/4701749b-b349-469e-bedd-13bc6af0d099
-
+> ### Sign Up To Event & Add To Calendar
+> https://github.com/user-attachments/assets/73bb9114-98ec-428b-9c27-e3fb788beef3
 
 ## 🟦 TECHNOLOGIES
 > [!NOTE]
