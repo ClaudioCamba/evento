@@ -22,7 +22,7 @@ function EventCardList ({title="Events", showEventsIds=[], control=false}) {
                 console.log('ERROR (fetchEventData)', err)
             })
         }
-    },[])
+    },[showEventsIds])
 
     return (<>
         <h1>{title}</h1>

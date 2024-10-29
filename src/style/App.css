@@ -66,6 +66,9 @@ main {
 main h1 {
   padding: 24px 12px;
 }
+main .red-text {
+  color: #dc3445;
+}
 main .page-banner {
   position: relative;
   text-align: center;
