@@ -22,6 +22,9 @@ Users of the platform can register and signed up to events and if they wish add 
 >   - Once signed in as a user, select event from homepage.
 >   - On the event page click sign up below event image and the add to calendar button should appear.
 >   - The add to calendar button shows several calendar services to add to (Google, Outlook, Office365 and Yahoo).
+> ### How To Create Events
+> https://github.com/user-attachments/assets/4701749b-b349-469e-bedd-13bc6af0d099
+
 
 ## 🟦 TECHNOLOGIES
 > [!NOTE]
